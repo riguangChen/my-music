@@ -1,6 +1,6 @@
 <template>
   <div>
-    热门歌单推荐
+    热门
   </div>
 </template>
 
