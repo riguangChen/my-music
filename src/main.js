@@ -6,11 +6,10 @@ import App from './App'
 import router from './router'
 import FastClick from 'fastclick'
 
-FastClick.attach(document.body)
-
-
 // Vue.config.productionTip = false
 import 'common/stylus/index.styl'
+
+FastClick.attach(document.body)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

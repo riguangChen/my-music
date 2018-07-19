@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <m-header></m-header>
-    <tab></tab>
+    <m-tab></m-tab>
     <router-view></router-view>
   </div>
 </template>
@@ -12,7 +12,7 @@ import Tab from 'components/tab/tab'
 export default {
   components: {
     'm-header': MHeader,
-    'tab': Tab
+    'm-tab': Tab
   }
 }
 </script>

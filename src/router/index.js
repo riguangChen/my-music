@@ -9,7 +9,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/secommend',
+      path: '/',
+      redirect: '/recommend'
+    }, {
+      path: '/recommend',
       component: Recommend
     }, {
       path: '/singer',
@@ -18,7 +21,7 @@ export default new Router({
       path: '/rank',
       component: Rank
     }, {
-      parh: '/search',
+      path: '/search',
       component: Search
     }
   ]
