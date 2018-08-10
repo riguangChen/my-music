@@ -1,5 +1,5 @@
 import originJsonp from 'jsonp'
-/* eslint-disable */
+
 export default function jsonp(url, data, option) {
   url += (url.indexOf('?') < 0 ? '?' : '$') + param(data)
   return new Promise((resolve, reject) => {

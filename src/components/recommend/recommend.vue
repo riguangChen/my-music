@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="recommend" ref="recommend">
     <scroll ref="scroll" class="recommend-content">
       <div>
@@ -33,6 +34,10 @@
       <!-- </div> -->
     </scroll>
     <!-- <router-view></router-view> -->
+=======
+  <div>
+    热门
+>>>>>>> ec4972c185805aaaddc347d419ac925681720f5d
   </div>
 </template>
 
