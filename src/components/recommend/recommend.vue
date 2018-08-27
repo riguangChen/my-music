@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div class="recommend" ref="recommend">
     <scroll ref="scroll" class="recommend-content">
       <div>
@@ -34,40 +33,36 @@
       <!-- </div> -->
     </scroll>
     <!-- <router-view></router-view> -->
-=======
-  <div>
-    热门
->>>>>>> ec4972c185805aaaddc347d419ac925681720f5d
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-import Slider from "base/slider/slider";
-import { getRecommend } from "api/recommend";
-import { ERR_OK } from "api/config";
+import Slider from 'base/slider/slider'
+import {getRecommend, getDiscList} from 'api/recommend'
+import { ERR_OK } from 'api/config'
 
 export default {
-  data() {
+  data () {
     return {
       recommends: []
-    };
+    }
   },
-  created() {
-    this._getRecommend();
+  created () {
+    this._getRecommend()
   },
   methods: {
-    _getRecommend() {
+    _getRecommend () {
       getRecommend().then(res => {
         if (res.code === ERR_OK) {
-          this.recommends = res.data.slider;
+          this.recommends = res.data.slider
         }
-      });
+      })
     }
   },
   components: {
     'slider': Slider
   }
-};
+}
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
