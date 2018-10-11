@@ -1,43 +1,51 @@
 <template>
   <div class="singer" ref="singer">
-    <list-view :data="singers"></list-view>
-    <!-- <router-view></router-view> -->
+    <list-view @select="selectSinger" :data="singers"></list-view>
+    <router-view></router-view>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-import { ERR_OK } from 'api/config'
-import { getSingerList } from 'api/singer'
-import Singer from 'common/js/singer'
-import listView from 'base/listview/listview'
+import { ERR_OK } from "api/config";
+import { getSingerList } from "api/singer";
+import Singer from "common/js/singer";
+import listView from "base/listview/listview";
+import { mapMutations } from "vuex";//mapMutations 是对 mutation 做一层封装 语法糖
 
-const HOT_SINGER_LEN = 10
-const HOT_NAME = '热门'
+const HOT_SINGER_LEN = 10;
+const HOT_NAME = "热门";
 
 export default {
-  data () {
+  data() {
     return {
       singers: []
-    }
+    };
   },
-  created () {
-    this._getSingerList()
+  created() {
+    this._getSingerList();
   },
   methods: {
-    _getSingerList () {
+    selectSinger(singer) {
+      this.$router.push({
+        path: `singer/${singer.id}`
+      });
+      this.setSinger(singer); // 调用映射，传数据
+    },
+    _getSingerList() {
       getSingerList().then(res => {
         if (res.code === ERR_OK) {
-          this.singers = this._normalizeSinger(res.data.list)
+          console.log(res.data.list);
+          this.singers = this._normalizeSinger(res.data.list);
         }
-      })
+      });
     },
-    _normalizeSinger (list) {
+    _normalizeSinger(list) {
       let map = {
         hot: {
           title: HOT_NAME,
           items: []
         }
-      }
+      };
       list.forEach((item, index) => {
         if (index < HOT_SINGER_LEN) {
           map.hot.items.push(
@@ -45,44 +53,48 @@ export default {
               name: item.Fsinger_name,
               id: item.Fsinger_mid
             })
-          )
+          );
         }
-        const key = item.Findex
+        const key = item.Findex;
         if (!map[key]) {
           map[key] = {
             title: key,
             items: []
-          }
+          };
         }
         map[key].items.push(
           new Singer({
             name: item.Fsinger_name,
             id: item.Fsinger_mid
           })
-        )
-      })
+        );
+      });
       // 为了得到有序列表，我们要处理map
-      const hot = []
-      const ret = []
+      const hot = [];
+      const ret = [];
       for (let key in map) {
-        let val = map[key]
-        let reg = /[a-zA-Z]/
+        let val = map[key];
+        let reg = /[a-zA-Z]/;
         if (reg.test(val.title)) {
-          ret.push(val)
+          ret.push(val);
         } else if (val.title === HOT_NAME) {
-          hot.push(val)
+          hot.push(val);
         }
       }
       ret.sort((a, b) => {
-        return a.title.charCodeAt(0) - b.title.charCodeAt(0)
-      })
-      return hot.concat(ret)
-    }
+        return a.title.charCodeAt(0) - b.title.charCodeAt(0);
+      });
+      return hot.concat(ret);
+    },
+    ...mapMutations({//扩展运算符
+      // 对象映射
+      setSinger: "SET_SINGER"
+    })
   },
   components: {
-    'list-view': listView
+    "list-view": listView
   }
-}
+};
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">

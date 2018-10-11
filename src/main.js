@@ -6,6 +6,7 @@ import App from './App'
 import router from './router'
 import FastClick from 'fastclick'
 import VueLazyLoad from 'vue-lazyload'
+import store from './store'
 
 // Vue.config.productionTip = false
 import 'common/stylus/index.styl'
@@ -19,5 +20,6 @@ new Vue({
   el: '#app',
   components: { App },
   template: '<App/>',
+  store,
   router
 })
