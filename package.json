@@ -14,7 +14,7 @@
     "axios": "^0.18.0",
     "babel-runtime": "^6.26.0",
     "better-scroll": "^1.12.5",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "fastclick": "^1.0.6",
     "jsonp": "^0.2.1",
     "vue": "^2.5.2",
